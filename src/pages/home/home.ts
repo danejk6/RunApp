@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'page-home',
@@ -7,8 +10,19 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  runcount: string = '';
+  items = [];
+  individuals = [];
+  toDoItem:string='';
 
+  constructor(public navCtrl: NavController, public http:Http) {
+    this.runcount = 'Gabe'
+    this.http.get('http://test.vickerhome.com/api/test/individuals').map(res => res.json()).subscribe(data => {
+        this.individuals = data;
+    });
   }
 
+  addToItems(){
+    this.items.push(this.toDoItem);
+  }
 }
