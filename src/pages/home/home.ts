@@ -14,11 +14,13 @@ export class HomePage {
   items = [];
   individuals = [];
   toDoItem:string='';
+  terrains = [];
 
   constructor(public navCtrl: NavController, public http:Http) {
     this.runcount = 'Gabe'
-    this.http.get('http://test.vickerhome.com/api/test/individuals').map(res => res.json()).subscribe(data => {
-        this.individuals = data;
+    
+    this.http.get('http://test.vickerhome.com/api/terrains/get').map(res => res.json()).subscribe(data => {
+        this.terrains = data;
     });
   }
 
