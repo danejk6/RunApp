@@ -1,0 +1,33 @@
+[{
+  "id": 1,
+  "time": "16:45:00",
+  "temp": 66,
+  "terrainID": 2,
+  "recorderID": 1,
+  "runnerID": 1,
+  "locationID": 2,
+  "teamID": 1,
+  "raceID": 1,
+  "runner": {
+    "id": 1,
+    "firstName": "Rich",
+    "lastName": "Vicker",
+    "runs": [],
+    "recorderRuns": []
+  },
+  "recorder": {
+    "id": 1,
+    "firstName": "Rich",
+    "lastName": "Vicker",
+    "runs": [],
+    "recorderRuns": []
+  },
+  "terrain": {
+    "id": 2,
+    "description": "Few Hills",
+    "runs": []
+  },
+  "location": null,
+  "team": null,
+  "race": null
+}]
