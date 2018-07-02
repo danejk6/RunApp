@@ -22,7 +22,7 @@
     </ion-item>
   </ion-list>
 
-  <!--<p>
+  <p>
     Terrain:
   </p>
   <ion-select>
@@ -41,26 +41,26 @@
   </p>
   <ion-select>
     <ion-option *ngFor="let team of teams" [value]="team.id" placeholder="Select team">
-      {{team.description}}
+      {{team.teamName}}
     </ion-option>
   </ion-select>
   <ion-list>
     <ion-item *ngFor="let team of teams">
-      {{team.description}}
+      {{team.teamName}}
     </ion-item>
-  </ion-list>-->
+  </ion-list>
 
   <p>
     Location:
   </p>
   <ion-select>
     <ion-option *ngFor="let location of locations" [value]="location.id" placeholder="Select location">
-      {{location.description}}
+      {{location.schoolName}}
     </ion-option>
   </ion-select>
   <ion-list>
     <ion-item *ngFor="let location of locations">
-      {{location.description}}
+      {{location.schoolName}}
     </ion-item>
   </ion-list>
 </ion-content>
