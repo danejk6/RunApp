@@ -17,7 +17,7 @@ export class HomePage {
   terrains = [];
   teams = [];
   locations = [];
-  runs = [];
+  //runs = [];
 
   constructor(public navCtrl: NavController, public http:Http) {
     this.runcount = 'Gabe'
