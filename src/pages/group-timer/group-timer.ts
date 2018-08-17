@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { runner } from './../../models/runner';
+import { runnerTimer } from '../../models/runnerTimer';
+import { lapTime } from './../../models/lapTime';
 /**
  * Generated class for the GroupTimerPage page.
  *
@@ -22,6 +24,10 @@ export class GroupTimerPage {
   s:any = 0;
   ms:any = 0;
   runningTimer:any;
+  runnerList:Array<runnerTimer> = new Array<runnerTimer>();
+  firstName:string = '';
+  lastName:string = '';
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -30,25 +36,27 @@ export class GroupTimerPage {
     console.log('ionViewDidLoad GroupTimerPage');
   }
 
+  addRunner(){
+    console.log('first: ' + this.firstName + ' last: ' + this.lastName);
+    var rnr = new runner(this.firstName, this.lastName);
+    var rnrTimer = new runnerTimer();
+    rnrTimer.runner = rnr;
+    this.runnerList.push(rnrTimer);
+  }
 
-//	Simple example of using private variables
-//
-//	To start the stopwatch:
-//		obj.start();
-//
-//	To get the duration in milliseconds without pausing / resuming:
-//		var	x = obj.time();
-//
-//	To pause the stopwatch:
-//		var	x = obj.stop();	// Result is duration in milliseconds
-//
-//	To resume a paused stopwatch
-//		var	x = obj.start();	// Result is duration in milliseconds
-//
-//	To reset a paused stopwatch
-//		obj.stop();
-//
-      // Private vars
+  addLap(rt:runnerTimer){
+    var t = this.time();
+    var l = new lapTime();
+    l.lap = this.time();
+    l.display = this.formatTime(l.lap);
+    console.log(rt);
+    rt.laps.push(l);
+  }
+
+  addFinal(rt:runnerTimer){
+    rt.finalTime = this.time();
+    rt.finalTimeDisplay = this.formatTime(rt.finalTime);
+  }
 
       now() {
           return (new Date()).getTime(); 

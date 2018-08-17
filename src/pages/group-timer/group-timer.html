@@ -14,6 +14,21 @@
 
 
 <ion-content padding>
+  FirstName: <ion-input type="text" [(ngModel)]="firstName" placeholder="First Name" ></ion-input>
+  LastName: <ion-input type="text" [(ngModel)]="lastName" placeholder="Last Name"></ion-input>
+  <button ion-button (click)="addRunner()">Add</button>
+  <ion-grid>
+    <ion-row *ngFor="let runnerListItem of runnerList">
+      <ion-col>{{runnerListItem.runner.firstName}} Final Time: {{runnerListItem.finalTimeDisplay}}</ion-col>
+      <ion-col><button ion-button (click)="addLap(runnerListItem)">Add Lap</button></ion-col>
+      <ion-col><button ion-button (click)="addFinal(runnerListItem)">Final Time</button></ion-col>
+      <ion-grid>
+        <ion-row *ngFor="let lap of runnerListItem.laps">
+          <ion-col>{{lap.display}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-row>
+  </ion-grid>
   {{runningTimer}}<br/><br/>
 
   <button ion-button (click)="runStart()">Start</button>
