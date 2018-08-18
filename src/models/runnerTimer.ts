@@ -6,6 +6,8 @@ export class runnerTimer {
     runner:runner = null;
     finalTime: DateTime = null;
     finalTimeDisplay: string = null;
+    previousLapTime: number = null;
+    currentSplit: string = null;
     laps:Array<lapTime> = null;
     isRunning:boolean = false;
 

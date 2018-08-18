@@ -79,13 +79,13 @@
                       <ion-row>
                           <ion-grid>
                             <ion-row *ngFor="let lap of runnerListItem.laps">
-                              <ion-col>{{lap.display}}</ion-col>
+                              <ion-col>lap</ion-col><ion-col>{{lap.display}}</ion-col><ion-col>split</ion-col><ion-col>{{lap.splitDisplay}}</ion-col>
                             </ion-row>
                           </ion-grid>
                         </ion-row>
                         <ion-row>
-                            <ion-col *ngIf="runnerListItem.isRunning">Final Time: <ion-badge  color="secondary">{{runningTimer}}</ion-badge></ion-col>
-                            <ion-col *ngIf="!runnerListItem.isRunning">Final Time: <ion-badge color="danger">{{runnerListItem.finalTimeDisplay}}</ion-badge></ion-col>
+                            <ion-col *ngIf="runnerListItem.isRunning||timerIsRunning">Final Time: <ion-badge  color="secondary">{{runningTimer}}</ion-badge></ion-col>
+                            <ion-col *ngIf="!runnerListItem.isRunning||!timerIsRunning">Final Time: <ion-badge color="danger">{{runnerListItem.finalTimeDisplay}}</ion-badge></ion-col>
                         </ion-row>
                   </ion-grid>
                   </ion-card-content>

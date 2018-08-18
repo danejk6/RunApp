@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, DateTime } from 'ionic-angular';
 import { runner } from './../../models/runner';
 import { runnerTimer } from '../../models/runnerTimer';
 import { lapTime } from './../../models/lapTime';
@@ -94,10 +94,21 @@ export class GroupTimerPage {
     alert.present();
   }
   addLap(rt:runnerTimer){
-    var t = this.time();
+    var t:number = this.time();
     var l = new lapTime();
-    l.lap = this.time();
+    var lap:number = this.time();
+    var split:number = null;
+    if (rt.previousLapTime!=null){
+      split = lap - rt.previousLapTime;
+    }else{
+      split = lap;
+    }
+    l.split = split;
+    l.splitDisplay = this.formatTime(split)
+    //rt.currentSplit = this.formatTime(split);//this.formatTime(rt.previousLapTime - lap);
+    l.lap = lap;
     l.display = this.formatTime(l.lap);
+    rt.previousLapTime =  t;
     console.log(rt);
     rt.laps.push(l);
   }
