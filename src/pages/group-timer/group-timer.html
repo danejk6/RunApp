@@ -38,62 +38,55 @@
         </ion-grid>
       </ion-list>
       <ion-list *ngSwitchCase="'timer'">
-        <ion-grid>
+        <ion-grid style="width:100%">
             <ion-row>
-                <ion-col><button ion-button (click)="runReset(runnerList)" small>reset</button></ion-col>
-                <ion-col><button ion-button (click)="runStart()" small>Start</button></ion-col>
-                <ion-col><button ion-button (click)="runStop()" small>Stop</button></ion-col>      
-            </ion-row>            
-            <ion-grid>
-                <!-- <ion-row>
-                    <ion-col>FirstName: <ion-input type="text" [(ngModel)]="firstName" placeholder="First Name" ></ion-input></ion-col>
-                    <ion-col>LastName: <ion-input type="text" [(ngModel)]="lastName" placeholder="Last Name"></ion-input></ion-col>
-                    <ion-col><button ion-button (click)="addRunner()" small>Add</button></ion-col>
-                  </ion-row>
-                  <ion-row>
-                <ion-col><button ion-button (click)="runReset(runnerList)" small>reset</button></ion-col>
-                <ion-col><button ion-button (click)="runStart()" small>Start</button></ion-col>
-                <ion-col><button ion-button (click)="runStop()" small>Stop</button></ion-col>
-              </ion-row> -->
-              <ion-row>
-                <ion-col class="timer" *ngIf="timerIsRunning"><ion-badge color="secondary">{{runningTimer}}</ion-badge></ion-col>
-                <ion-col class="timer" *ngIf="!timerIsRunning"><ion-badge color="danger">{{runningTimer}}</ion-badge></ion-col>
-              </ion-row>
-              <ion-row *ngFor="let runnerListItem of runnerList">
+                <ion-col text-center><button ion-button (click)="runReset(runnerList)" small>reset</button></ion-col>
+                <ion-col text-center><button ion-button (click)="runStart()" small>Start</button></ion-col>
+                <ion-col text-center><button ion-button (click)="runStop()" small>Stop</button></ion-col>      
+            </ion-row>           
+            <ion-row float-right>
+              <ion-col text-center *ngIf="timerIsRunning!=null"><ion-badge [color]="timerColor"><span class="timer">{{runningTimer}}</span></ion-badge></ion-col>
+            </ion-row>
+        <!-- </ion-grid>
+        <ion-grid style="width: 100%"> -->
+          <!-- <ion-row float-right>
+            <ion-col text-center *ngIf="timerIsRunning!=null"><ion-badge [color]="timerColor"><span class="timer">{{runningTimer}}</span></ion-badge></ion-col>
+          </ion-row> -->
+          <ion-row *ngFor="let runnerListItem of runnerList">
+            <ion-col>
                 <ion-card>
-                  <ion-card-header>
-                    <ion-row>
-                      <ion-col>
-                          {{runnerListItem.runner.firstName}}  {{runnerListItem.runner.lastName}}
-                      </ion-col>
-                      <ion-col>
-                          <button ion-button (click)="addLap(runnerListItem)" small>Add Lap</button>  
-                      </ion-col>
-                      <ion-col>
-                          <button ion-button (click)="addFinal(runnerListItem)" small>Stop</button>  
-                      </ion-col>
-                    </ion-row>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-grid>
+                    <ion-card-header>
                       <ion-row>
-                          <ion-grid>
-                            <ion-row *ngFor="let lap of runnerListItem.laps">
-                              <ion-col>lap</ion-col><ion-col>{{lap.display}}</ion-col><ion-col>split</ion-col><ion-col>{{lap.splitDisplay}}</ion-col>
-                            </ion-row>
-                          </ion-grid>
-                        </ion-row>
+                        <ion-col>
+                            {{runnerListItem.runner.firstName}}  {{runnerListItem.runner.lastName}}
+                        </ion-col>
+                        <ion-col>
+                            <button ion-button (click)="addLap(runnerListItem)" small>Add Lap</button>  
+                        </ion-col>
+                        <ion-col>
+                            <button ion-button (click)="addFinal(runnerListItem)" small>Stop</button>  
+                        </ion-col>
+                      </ion-row>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <ion-grid>
                         <ion-row>
-                            <ion-col *ngIf="runnerListItem.isRunning||timerIsRunning">Final Time: <ion-badge  color="secondary">{{runningTimer}}</ion-badge></ion-col>
-                            <ion-col *ngIf="!runnerListItem.isRunning||!timerIsRunning">Final Time: <ion-badge color="danger">{{runnerListItem.finalTimeDisplay}}</ion-badge></ion-col>
-                        </ion-row>
-                  </ion-grid>
-                  </ion-card-content>
-                </ion-card>
-                <!-- <ion-col>{{runnerListItem.runner.firstName}} Final Time: {{runnerListItem.finalTimeDisplay}}</ion-col> -->
-              </ion-row>
-            </ion-grid>
-          </ion-grid>
+                            <ion-grid>
+                              <ion-row *ngFor="let lap of runnerListItem.laps">
+                                <ion-col>lap</ion-col><ion-col>{{lap.display}}</ion-col><ion-col>split</ion-col><ion-col>{{lap.splitDisplay}}</ion-col>
+                              </ion-row>
+                            </ion-grid>
+                          </ion-row>
+                          <ion-row>
+                              <ion-col *ngIf="runnerListItem.isRunning">Final Time: <ion-badge  color="secondary"><span class="timer">{{runningTimer}}</span></ion-badge></ion-col>
+                              <ion-col *ngIf="!runnerListItem.isRunning && timerIsRunning!=null">Final Time: <ion-badge color="danger"><span class="timer">{{runnerListItem.finalTimeDisplay}}</span></ion-badge></ion-col>
+                          </ion-row>
+                    </ion-grid>
+                    </ion-card-content>
+                  </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-list>    
   </div>
 </ion-content>

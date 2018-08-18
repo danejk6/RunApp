@@ -30,7 +30,8 @@ export class GroupTimerPage {
   firstName:string = '';
   lastName:string = '';
   currentView:string = 'timer';
-  timerIsRunning:boolean = false;
+  timerIsRunning:boolean = null;
+  timerColor:string='secondary';
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
@@ -139,6 +140,7 @@ export class GroupTimerPage {
       start() {
           this.startAt	= this.startAt ? this.startAt : this.now();
           this.timerIsRunning = true;
+          this.timerColor="secondary";
           this.runnerList.forEach(function(item,index)
         {
           item.isRunning = true;
@@ -149,6 +151,7 @@ export class GroupTimerPage {
       stop() {
           // If running, update elapsed time otherwise keep it
           this.lapTime	= this.startAt ? this.lapTime + this.now() - this.startAt : this.lapTime;
+          this.timerColor="danger";
           this.timerIsRunning = false;
           this.startAt	= 0; // Paused
         };
@@ -186,6 +189,13 @@ export class GroupTimerPage {
 
       runStop(){
         this.stop();
+
+        this.runnerList.forEach(function(item,index)
+        {
+          if (item.isRunning == true){
+            item.isRunning = false;
+          }
+        })
       }
 
       runReset(rl:Array<runnerTimer>){
