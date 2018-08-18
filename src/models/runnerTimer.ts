@@ -7,6 +7,7 @@ export class runnerTimer {
     finalTime: DateTime = null;
     finalTimeDisplay: string = null;
     laps:Array<lapTime> = null;
+    isRunning:boolean = false;
 
     constructor(){
         this.laps = new Array<lapTime>();
