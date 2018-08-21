@@ -41,8 +41,10 @@
         <ion-grid style="width:100%">
             <ion-row>
                 <ion-col text-center><button ion-button (click)="runReset(runnerList)" small>reset</button></ion-col>
-                <ion-col text-center><button ion-button (click)="runStart()" small>Start</button></ion-col>
-                <ion-col text-center><button ion-button (click)="runStop()" small>Stop</button></ion-col>      
+                <ion-col text-center>
+                  <button *ngIf="timerIsRunning==null || timerIsRunning==false" ion-button (click)="runStart()" icon-only clear large><ion-icon name="play" color="secondary"></ion-icon></button>
+                  <button *ngIf="timerIsRunning==true" ion-button (click)="runStop()" icon-only clear large><ion-icon name="square" color="danger"></ion-icon></button>
+                </ion-col>      
             </ion-row>           
             <ion-row float-right>
               <ion-col text-center *ngIf="timerIsRunning!=null"><ion-badge [color]="timerColor"><span class="timer">{{runningTimer}}</span></ion-badge></ion-col>
@@ -61,10 +63,12 @@
                             {{runnerListItem.runner.firstName}}  {{runnerListItem.runner.lastName}}
                         </ion-col>
                         <ion-col>
-                            <button ion-button (click)="addLap(runnerListItem)" small>Add Lap</button>  
-                        </ion-col>
+                            <!-- <button ion-button (click)="addLap(runnerListItem)" small>Add Lap</button>   -->
+                            <ion-col><button ion-button icon-only clear large (click)="addLap(runnerListItem)" *ngIf="runnerListItem.isRunning==true"><ion-icon name="add-circle" color="secondary"></ion-icon></button></ion-col>
+                          </ion-col>
                         <ion-col>
-                            <button ion-button (click)="addFinal(runnerListItem)" small>Stop</button>  
+                            <!-- <button ion-button (click)="addFinal(runnerListItem)" small>Stop</button>   -->
+                            <button (click)="addFinal(runnerListItem)" ion-button icon-only clear large *ngIf="runnerListItem.isRunning==true"><ion-icon name="square" color="danger"></ion-icon></button>
                         </ion-col>
                       </ion-row>
                     </ion-card-header>

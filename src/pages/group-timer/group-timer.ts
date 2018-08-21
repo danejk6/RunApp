@@ -118,6 +118,24 @@ export class GroupTimerPage {
     rt.finalTime = this.time();
     rt.isRunning = false;
     rt.finalTimeDisplay = this.formatTime(rt.finalTime);
+    var itemCount = this.runnerList.length;
+    var i = 0;
+    var me = this;
+    var ATimerRunning = false;
+    
+    this.runnerList.forEach(function(item, index){
+      i++
+      if(item.isRunning == true){
+        ATimerRunning = true
+      }
+
+      if(i == itemCount){
+        if(!ATimerRunning){
+          me.runStop();
+        }
+      }
+    })
+
   }
 
   removeRunner(rt:runnerTimer){
