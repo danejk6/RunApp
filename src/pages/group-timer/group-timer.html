@@ -24,13 +24,13 @@
 <ion-content padding>
   <div [ngSwitch]="currentView">
       <ion-list *ngSwitchCase="'runner'">
-        <ion-grid>
-            <ion-row>
+        <ion-grid style="width:100%;height: 100%">
+            <ion-row justify-content-center align-items-center style="height: 100%">
                 <ion-col>FirstName: <ion-input type="text" [(ngModel)]="firstName" placeholder="First Name" ></ion-input></ion-col>
                 <ion-col>LastName: <ion-input type="text" [(ngModel)]="lastName" placeholder="Last Name"></ion-input></ion-col>
                 <ion-col><button ion-button (click)="addRunner()" small>Add</button></ion-col>
               </ion-row>
-            <ion-row *ngFor="let runnerListItem of runnerList">
+            <ion-row *ngFor="let runnerListItem of runnerList" justify-content-center align-items-center style="height: 100%">
               <ion-col>{{runnerListItem.runner.firstName}}</ion-col>
               <ion-col>{{runnerListItem.runner.lastName}}</ion-col>
               <ion-col><button ion-button (click)="removeRunner(runnerListItem)" small>Remove</button></ion-col>
@@ -38,8 +38,8 @@
         </ion-grid>
       </ion-list>
       <ion-list *ngSwitchCase="'timer'">
-        <ion-grid style="width:100%">
-            <ion-row>
+        <ion-grid style="width:100%; height:100%">
+            <ion-row justify-content-center align-items-center style="height: 100%">
                 <ion-col text-center><button ion-button (click)="runReset(runnerList)" small>reset</button></ion-col>
                 <ion-col text-center>
                   <button *ngIf="timerIsRunning==null || timerIsRunning==false" ion-button (click)="runStart()" icon-only clear large><ion-icon name="play" color="secondary"></ion-icon></button>
@@ -58,33 +58,33 @@
             <ion-col>
                 <ion-card>
                     <ion-card-header>
-                      <ion-row>
-                        <ion-col>
-                            {{runnerListItem.runner.firstName}}  {{runnerListItem.runner.lastName}}
-                        </ion-col>
-                        <ion-col>
-                            <!-- <button ion-button (click)="addLap(runnerListItem)" small>Add Lap</button>   -->
-                            <ion-col><button ion-button icon-only clear large (click)="addLap(runnerListItem)" *ngIf="runnerListItem.isRunning==true"><ion-icon name="add-circle" color="secondary"></ion-icon></button></ion-col>
-                          </ion-col>
-                        <ion-col>
-                            <!-- <button ion-button (click)="addFinal(runnerListItem)" small>Stop</button>   -->
-                            <button (click)="addFinal(runnerListItem)" ion-button icon-only clear large *ngIf="runnerListItem.isRunning==true"><ion-icon name="square" color="danger"></ion-icon></button>
-                        </ion-col>
-                      </ion-row>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <ion-grid>
-                        <ion-row>
-                            <ion-grid>
-                              <ion-row *ngFor="let lap of runnerListItem.laps">
-                                <ion-col>lap</ion-col><ion-col>{{lap.display}}</ion-col><ion-col>split</ion-col><ion-col>{{lap.splitDisplay}}</ion-col>
-                              </ion-row>
+                      <ion-grid  style="width:100%; height:100%">
+                          <ion-row justify-content-center align-items-center style="height: 100%">
+                              <ion-col>
+                                  <a button (click)="openModal(runnerListItem.runner)"><span>{{runnerListItem.runner.firstName}}  {{runnerListItem.runner.lastName}}</span></a >
+                              </ion-col>
+                              <ion-col>
+                                  <!-- <button ion-button (click)="addLap(runnerListItem)" small>Add Lap</button>   -->
+                                  <ion-col><button ion-button icon-only clear large (click)="addLap(runnerListItem)" *ngIf="runnerListItem.isRunning==true"><ion-icon name="add-circle" color="secondary"></ion-icon></button></ion-col>
+                                  <ion-col><button (click)="addFinal(runnerListItem)" ion-button icon-only clear large *ngIf="runnerListItem.isRunning==true"><ion-icon name="square" color="danger"></ion-icon></button></ion-col>
+                                </ion-col>
+                              <ion-col>
+                                <!-- <button ion-button (click)="addFinal(runnerListItem)" small>Stop</button>   -->
+                                  <ion-col *ngIf="runnerListItem.isRunning"><ion-badge  color="secondary"><span>{{runningTimer}}</span></ion-badge></ion-col>
+                                  <ion-col *ngIf="!runnerListItem.isRunning && timerIsRunning!=null"><ion-badge color="danger"><span class="timer">{{runnerListItem.finalTimeDisplay}}</span></ion-badge></ion-col>                          
+                              </ion-col>
+                            </ion-row>
                             </ion-grid>
-                          </ion-row>
-                          <ion-row>
-                              <ion-col *ngIf="runnerListItem.isRunning">Final Time: <ion-badge  color="secondary"><span class="timer">{{runningTimer}}</span></ion-badge></ion-col>
-                              <ion-col *ngIf="!runnerListItem.isRunning && timerIsRunning!=null">Final Time: <ion-badge color="danger"><span class="timer">{{runnerListItem.finalTimeDisplay}}</span></ion-badge></ion-col>
-                          </ion-row>
+                    </ion-card-header>
+                    <ion-card-content *ngIf="runnerListItem.laps">
+                      <ion-grid>
+                              <ion-row *ngFor="let lap of runnerListItem.laps">
+                                <ion-col>Lap:</ion-col><ion-col>{{lap.display}}</ion-col><ion-col>Split:</ion-col><ion-col>{{lap.splitDisplay}}</ion-col>
+                              </ion-row>
+                          <!-- <ion-row>
+                              <ion-col *ngIf="runnerListItem.isRunning">Final Time: <ion-badge  color="secondary"><span class="timer">{{runningTimer}}</span></ion-badge></ion-col> -->
+                              <!-- <ion-col *ngIf="!runnerListItem.isRunning && timerIsRunning!=null">Final Time: <ion-badge color="danger"><span class="timer">{{runnerListItem.finalTimeDisplay}}</span></ion-badge></ion-col> -->
+                          <!-- </ion-row> -->
                     </ion-grid>
                     </ion-card-content>
                   </ion-card>

@@ -1,0 +1,24 @@
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Edit Runner
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <ion-icon name="md-close"></ion-icon>
+          <!-- <span ion-text color="primary" showWhen="ios">Cancel</span>
+          <ion-icon name="md-close" showWhen="android, windows"></ion-icon> -->
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>FirstName: <ion-input type="text" [(ngModel)]="rt.firstName" placeholder="First Name"  ></ion-input></ion-col>
+            <ion-col>LastName: <ion-input type="text" [(ngModel)]="rt.lastName" placeholder="Last Name"></ion-input></ion-col>
+            <ion-col><button ion-button (click)="updateRunner()" small>Save</button></ion-col>
+        </ion-row>
+</ion-grid>
+  </ion-content>

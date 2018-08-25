@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, DateTime } from 'ionic-angular';
+import { ModalController, IonicPage, NavController, NavParams, DateTime, ViewController, Platform } from 'ionic-angular';
 import { runner } from './../../models/runner';
 import { runnerTimer } from '../../models/runnerTimer';
 import { lapTime } from './../../models/lapTime';
@@ -34,7 +34,13 @@ export class GroupTimerPage {
   timerColor:string='secondary';
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController) {
+  }
+
+  openModal(rt:runnerTimer) {
+
+    let modal = this.modalCtrl.create(ModalContentPage, {"rt":rt});
+    modal.present();
   }
 
   ionViewDidLoad() {
@@ -84,6 +90,10 @@ export class GroupTimerPage {
         me.lastName = '';    
       }
     }
+  }
+
+  editRunner(){
+    this.showAlert();
   }
 
   showAlert() {
@@ -250,4 +260,28 @@ export class GroupTimerPage {
     return newTime;
     }
     
+}
+@Component({
+  templateUrl: 'mdlEditUser.html'
+})
+export class ModalContentPage {
+  rt;
+
+  constructor(
+    public platform: Platform,
+    public params: NavParams,
+    public viewCtrl: ViewController
+  ){
+
+    this.rt = this.params.get("rt")
+  }
+
+  updateRunner(){
+    this.dismiss();
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
 }

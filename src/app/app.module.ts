@@ -8,7 +8,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { GroupTimerPage } from './../pages/group-timer/group-timer';
+import { GroupTimerPage, ModalContentPage } from './../pages/group-timer/group-timer';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,7 +21,8 @@ import { SvcGroupTimerProvider } from '../providers/svc-group-timer/svc-group-ti
     ContactPage,
     HomePage,
     TabsPage,
-    GroupTimerPage
+    GroupTimerPage,
+    ModalContentPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +36,8 @@ import { SvcGroupTimerProvider } from '../providers/svc-group-timer/svc-group-ti
     ContactPage,
     HomePage,
     TabsPage,
-    GroupTimerPage
+    GroupTimerPage, 
+    ModalContentPage
   ],
   providers: [
     StatusBar,

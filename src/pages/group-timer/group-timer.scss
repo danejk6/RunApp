@@ -4,3 +4,10 @@ page-group-timer {
         font-size: 20px;
     }
 }
+
+.vertical-align-content > *
+{
+     display: flex!important;
+     align-content: center!important;
+     align-items: center!important;
+}
