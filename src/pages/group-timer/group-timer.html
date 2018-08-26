@@ -26,8 +26,8 @@
       <ion-list *ngSwitchCase="'runner'">
         <ion-grid style="width:100%;height: 100%">
             <ion-row justify-content-center align-items-center style="height: 100%">
-                <ion-col>FirstName: <ion-input type="text" [(ngModel)]="firstName" placeholder="First Name" ></ion-input></ion-col>
-                <ion-col>LastName: <ion-input type="text" [(ngModel)]="lastName" placeholder="Last Name"></ion-input></ion-col>
+                <ion-col>FirstName: <ion-input type="text" [(ngModel)]="firstName" placeholder="First Name" #txtFName ></ion-input></ion-col>
+                <ion-col>LastName: <ion-input type="text" [(ngModel)]="lastName" placeholder="Last Name" #txtLName></ion-input></ion-col>
                 <ion-col><button ion-button (click)="addRunner()" small>Add</button></ion-col>
               </ion-row>
             <ion-row *ngFor="let runnerListItem of runnerList" justify-content-center align-items-center style="height: 100%">
@@ -47,7 +47,16 @@
                 </ion-col>      
             </ion-row>           
             <ion-row float-right>
-              <ion-col text-center *ngIf="timerIsRunning!=null"><ion-badge [color]="timerColor"><span class="timer">{{runningTimer}}</span></ion-badge></ion-col>
+              <ion-col text-center *ngIf="timerIsRunning!=null">
+                <ion-badge [color]="timerColor"><span class="timer">{{runningTimer}}</span></ion-badge>
+              </ion-col>
+            </ion-row>
+            <ion-row  float-right justify-content-center align-items-center style="height: 100%">
+              <ion-col text-center *ngIf="timerIsRunning!=null">
+                  <button ion-button (click)="subtractPlaceCount()" icon-only clear large><ion-icon name="arrow-dropleft-circle"></ion-icon></button>
+                  <button ion-button icon-only clear large><ion-badge color="secondary" large>{{placeCounter}}</ion-badge></button>
+                  <button ion-button (click)="addPlaceCount()" icon-only clear large><ion-icon name="arrow-dropright-circle"></ion-icon></button>
+              </ion-col>
             </ion-row>
         <!-- </ion-grid>
         <ion-grid style="width: 100%"> -->
@@ -72,6 +81,7 @@
                                 <!-- <button ion-button (click)="addFinal(runnerListItem)" small>Stop</button>   -->
                                   <ion-col *ngIf="runnerListItem.isRunning"><ion-badge  color="secondary"><span>{{runningTimer}}</span></ion-badge></ion-col>
                                   <ion-col *ngIf="!runnerListItem.isRunning && timerIsRunning!=null"><ion-badge color="danger"><span class="timer">{{runnerListItem.finalTimeDisplay}}</span></ion-badge></ion-col>                          
+                                  <ion-col *ngIf="!runnerListItem.isRunning && timerIsRunning!=null"><ion-badge color="primary"><span class="timer">{{runnerListItem.place}}</span></ion-badge></ion-col>                          
                               </ion-col>
                             </ion-row>
                             </ion-grid>

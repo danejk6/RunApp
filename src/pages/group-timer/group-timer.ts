@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ModalController, IonicPage, NavController, NavParams, DateTime, ViewController, Platform } from 'ionic-angular';
 import { runner } from './../../models/runner';
 import { runnerTimer } from '../../models/runnerTimer';
@@ -19,6 +19,8 @@ import { AlertController } from 'ionic-angular';
 })
 export class GroupTimerPage {
 
+  @ViewChild('txtFName') txtFName ;
+
   startAt:any	= 0;	// Time of last start / resume. (0 if not running)
   lapTime:any	= 0;	// Time on the clock when last stopped in milliseconds
   h:any = 0;
@@ -32,9 +34,10 @@ export class GroupTimerPage {
   currentView:string = 'timer';
   timerIsRunning:boolean = null;
   timerColor:string='secondary';
+  placeCounter:number = 0;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, ) {
   }
 
   openModal(rt:runnerTimer) {
@@ -45,6 +48,14 @@ export class GroupTimerPage {
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad GroupTimerPage');
+  }
+
+  addPlaceCount(){
+    this.placeCounter = this.placeCounter + 1;
+  }
+
+  subtractPlaceCount(){
+    this.placeCounter = this.placeCounter - 1;
   }
 
   addRunner(){
@@ -89,6 +100,8 @@ export class GroupTimerPage {
         me.firstName = '';
         me.lastName = '';    
       }
+
+      this.txtFName.setFocus();
     }
   }
 
@@ -128,6 +141,8 @@ export class GroupTimerPage {
     rt.finalTime = this.time();
     rt.isRunning = false;
     rt.finalTimeDisplay = this.formatTime(rt.finalTime);
+    this.addPlaceCount()
+    rt.place = this.placeCounter;
     var itemCount = this.runnerList.length;
     var i = 0;
     var me = this;

@@ -10,6 +10,7 @@ export class runnerTimer {
     currentSplit: string = null;
     laps:Array<lapTime> = null;
     isRunning:boolean = false;
+    place:number = null;
 
     constructor(){
         this.laps = new Array<lapTime>();
