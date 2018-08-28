@@ -202,6 +202,7 @@ export class GroupTimerPage {
       // Reset
       reset() {
         this.lapTime = this.startAt = 0;
+        this.placeCounter = 0;
         };
 
       // Duration
@@ -247,6 +248,7 @@ export class GroupTimerPage {
             item.laps = new Array<lapTime>();
             item.finalTime = null;
             item.finalTimeDisplay = null;
+            item.place = null;
         })
       }
     //};
