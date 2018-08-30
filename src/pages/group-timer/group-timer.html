@@ -126,14 +126,14 @@
           </ion-grid>
           </ion-row>
   </ion-grid>
-        <ion-fab right bottom>
-            <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
-            <ion-fab-list side="left">
-                <button ion-fab (click)="addPlaceCount()"><ion-icon name="arrow-dropright-circle"></ion-icon></button>
-                <button ion-fab icon-only clear large><ion-badge color="secondary" large>{{placeCounter}}</ion-badge></button>
-                <button ion-fab (click)="subtractPlaceCount()"><ion-icon name="arrow-dropleft-circle"></ion-icon></button>
-            </ion-fab-list>
-        </ion-fab>
       </ion-list>    
   </div>
+  <ion-fab right bottom *ngIf="currentView=='timer'">
+    <button ion-fab color="light"><ion-icon name="arrow-dropup"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="subtractPlaceCount()"><ion-icon name="arrow-dropdown-circle"></ion-icon></button>
+        <button ion-fab icon-only clear large><ion-badge color="secondary" large>{{placeCounter}}</ion-badge></button>
+        <button ion-fab (click)="addPlaceCount()"><ion-icon name="arrow-dropup-circle"></ion-icon></button>
+    </ion-fab-list>
+</ion-fab>
 </ion-content>
